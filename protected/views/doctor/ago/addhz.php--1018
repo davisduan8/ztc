@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+        <title>添加商品</title>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8">
+        <link href="mine.css" type="text/css" rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="div_head">
+            <span>
+                <span style="float:left">当前位置是：首页->申请会诊</span>
+                <span style="font-weight: bold">
+                    <a style="text-decoration: none" href="./index.php?r=doctor/index">【返回】</a>
+                </span>
+            </span>
+        </div>
+        <div style="font:normal bold 14pt 黑体;color:blue;">        
+           <?php
+            if(Yii::app()->user->hasFlash('success')){
+                echo Yii::app()->user->getFlash('success');
+            }
+            ?> </div>
+        <div style="font-size: 13px;margin: 10px 5px">
+           <?php $form = $this -> beginWidget('CActiveForm'); ?>
+            <table border="1px" width="100%" class="table_a">
+                <tr>
+                    <td>
+                     <?php echo $form -> labelEx($info_model, 'p_name') ?>
+                    </td>
+                    <td>
+                      <?php echo $form -> textField($info_model,'p_name'); ?>
+                    </td>
+                </tr>
+               <tr>
+                    <td>
+                     <?php echo $form -> labelEx($info_model, 'p_sex') ?>
+                    </td>
+                    <td>
+                      <?php echo $form->radioButtonList($info_model,'p_sex',array('男'=>'男', '女'=>'女')); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                     <?php echo $form -> labelEx($info_model, 'p_age') ?>
+                    </td>
+                    <td>
+                      <?php echo $form -> textField($info_model,'p_age'); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                     <?php echo $form -> labelEx($info_model, 'p_mobile') ?>
+                    </td>
+                    <td>
+                      <?php echo $form -> textField($info_model,'p_mobile'); ?>
+                    </td>
+                </tr>
+                 <tr>
+                    <td>
+                     <?php echo $form -> labelEx($info_model, 'illness') ?>
+                    </td>
+                    <td>
+                      <?php echo $form -> textArea($info_model,'illness',array('cols'=>30,'rows'=>5)); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <input type="submit" value="提交">
+                    </td>
+                </tr>  
+            </table>
+            <?php $this -> endwidget(); ?>
+        </div>
+    </body>
+</html>

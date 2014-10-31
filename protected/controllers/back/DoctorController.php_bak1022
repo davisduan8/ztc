@@ -1,0 +1,116 @@
+<?php
+/**
+ *@author lsc Date 2013/10/17
+ */
+class DoctorController extends Controller
+{
+	public $layout='//layouts/columnd';
+	//医生列表页
+	public function actionIndex()
+	{
+           
+		$this->render('index');
+	}
+        //新增会诊
+        public function actionAddhz(){
+
+           $model = new Consultation;
+          
+           if(isset($_POST['Consultation']))
+	   {
+//                foreach($_POST['Consultation'] as $key => $val){
+//                    $model->$key = $val;
+//                }
+               $model->pre_time = time();
+               $model->attributes = $_POST['Consultation'] ;
+               if($model->save()){
+                   //信息添加成功后实现页面重定向（列表页面）
+                   Yii::app()->user->setFlash('success','申请会诊成功！');
+                    //$this -> redirect('./index.php?r=houtai/goods/show');
+                //  $this->refresh();
+               } 
+     
+              // $this -> redirect('./index.php?r=doctor/index'); //添加成功之后跳转到首页
+	  }
+
+           $this->render('addhz',array('info_model'=> $model));
+       
+            
+        }
+        //待处理会诊
+        public function actionWaithz(){
+                $model = new Consultation('search');
+                 
+              //  print_r($_GET['Consultation']);die();
+		if(isset($_GET['Consultation']))
+                $model->attributes=$_GET['Consultation'];
+             
+		$this->render('waithz',array(
+			'model'=>$model,
+		));
+                  
+        }
+        //待处理会诊的显示详细信息
+        public function actionView($id){
+          $model=$this->loadModel($id);
+	  $this->render('view',array('model'=>$model));
+        }
+        //待处理会诊修改信息
+        public function actionUpdate($id)
+	{
+		$model=$this->loadModel($id);
+		if(isset($_POST['Consultation']))
+		{
+			$model->attributes=$_POST['Consultation'];
+			if($model->save())
+			$this->redirect(array('view','id'=>$model->id));
+		}
+
+		$this->render('update',array(
+			'model'=>$model,
+		));
+	}
+        //待处理会诊删除信息、
+        public function actionDelete($id)
+	{
+		if(Yii::app()->request->isPostRequest)
+		{
+                    // we only allow deletion via POST request
+                    $this->loadModel($id)->delete();
+                    // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+                    if(!isset($_GET['ajax']))
+                            $this->redirect(array('index'));
+		}
+		else
+		throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+	}
+       /**
+	 * Returns the data model based on the primary key given in the GET variable.
+	 * If the data model is not found, an HTTP exception will be raised.
+	 */
+	public function loadModel($id)
+	{
+            	$model=Consultation::model()->findByPk($id);
+		if($model===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		return $model;
+            
+	}
+
+        
+	/**
+	 * This is the action to handle external exceptions.
+	 */
+	public function actionError()
+	{
+		if($error=Yii::app()->errorHandler->error)
+		{
+			if(Yii::app()->request->isAjaxRequest)
+				echo $error['message'];
+			else
+				$this->render('error', $error);
+		}
+	}
+
+	
+}

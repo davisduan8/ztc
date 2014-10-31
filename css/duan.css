@@ -1,0 +1,39 @@
+
+.items{border:1px #eae9e4 solid;width:100%}
+.items td{border-right:1px #eae9e4 solid;border-bottom:1px #eae9e4 solid;text-align:center;padding:15px 0;font:500 14px "微软雅黑";color:#555}
+.items th{border-right:1px #eae9e4 solid;border-bottom:1px #eae9e4 solid;text-align:center;padding:15px 0;font:500 14px "微软雅黑";color:#555}
+.items thead tr th{text-align:center;font:700 14px/40px "微软雅黑";color:#555;padding:0;}
+.items thead tr th a{color:#555;}
+.del_btn{display:block;width:22px;height:22px;background:url(../img/del.jpg) no-repeat;overflow:hidden;text-indent:-999em;margin:0 auto;}
+.del_btn:hover{background:url(../img/del_hover.jpg) no-repeat}
+.compile_btn{display:block;width:24px;height:23px;background:url(../img/compile_btn.jpg) no-repeat;overflow:hidden;text-indent:-999em;}
+
+.select_box0301{float:left;}
+.select_box0301 .myselect0301{display:block;width:278px;height:30px;border:1px #eae9e4 solid;font:500 14px/30px "微软雅黑";color:#555;padding:0 5px;cursor:pointer;}
+.select_box .myselect0301{display:block;width:278px;height:30px;border:1px #eae9e4 solid;font:500 14px/30px "微软雅黑";color:#555;padding:0 5px;cursor:pointer;}
+
+
+.pager{width:100%;text-align:right;padding:20px 0}
+.pager ul li{float: left;}
+.pager a{display:inline-block;width:30px;height:30px;text-align:center;line-height:30px;font-family:arial;font-size:16px;border:1px #eae9e4 solid;background:#fff;overflow:hidden;margin-left:10px}
+.pager a:hover{background:#fffae5;border:1px #f0dd93 solid;color:#fe8c1b}
+.pager .selected a{background:#fffae5;border:1px #f0dd93 solid;color:#fe8c1b}
+.pager .previous a,.pager .next a,.pager .last a,.pager .first a{width:60px}
+
+
+.dian_btn label{float: none;}
+
+.form_txt10301{float:left;border:1px #eae9e4 solid;line-height:30px;font:500 14px/30px "微软雅黑";color:#555;padding:0 5px}
+
+.pbxs03{clear: both; height: 30px; margin: 10px 5px; border: 1px #e8caac solid }
+.pbxs03 li{float: left; line-height: 30px;}
+.pbxs03 .pbxs03_1{width: 150px; background-color: #ffe6ce; color:#a25304 }
+.pbxs03 .pbxs03_2{width: 100px; background-color: #a25304; color: #FFFFFF;}
+.pbxs03 .pbxs03_3{width: 100px; background-color: #fffbce;color: #fe8c1b;}
+.pbxs03 .pbxs03_4{width: 100px;}
+
+.xzzj_01{width: 300px; display: block; float: left; line-height: 35px;}
+.xzzj_01 label{float: none;}
+
+.fj0301{width: 80px; border-right: 1px solid #CCC; padding-right: 5px; padding-left: 5px;}
+.fj0301 dd{text-align: center; color: #CCC;}

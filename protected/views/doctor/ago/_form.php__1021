@@ -1,0 +1,52 @@
+<?php 
+/**
+ *定义数组使radio的样式不用换行
+ */		
+
+	$tplarray=array('template'=>'{input} {label}','separator'=>'');
+?>
+<div class="form">
+
+<?php $form=$this->beginWidget('CActiveForm'); ?>
+
+	<p class="note">星号<span class="required">*</span>为必填项 </p>
+
+	<?php echo CHtml::errorSummary($model); ?>
+
+	<div class="row">
+		 <?php echo $form -> labelEx($model, 'p_name') ?>
+		 <?php echo $form -> textField($model,'p_name'); ?>
+		<?php echo $form->error($model,'p_name'); ?>
+	</div>
+        <div class="row">
+		 <?php echo $form -> labelEx($model, 'p_sex') ?>
+		   <?php echo $form->radioButtonList($model,'p_sex',array('男'=>'男', '女'=>'女'),$tplarray); ?>
+		<?php echo $form->error($model,'p_sex'); ?>
+	</div>
+       <div class="row">
+		 <?php echo $form -> labelEx($model, 'p_age') ?>
+		 <?php echo $form -> textField($model,'p_age'); ?>
+		<?php echo $form->error($model,'p_age'); ?>
+	</div>
+       <div class="row">
+		 <?php echo $form -> labelEx($model, 'p_mobile') ?>
+		 <?php echo $form -> textField($model,'p_mobile'); ?>
+		<?php echo $form->error($model,'p_mobile'); ?>
+	</div>
+	<div class="row">
+		<?php echo $form->labelEx($model,'illness'); ?>
+		<?php echo CHtml::activeTextArea($model,'illness',array('rows'=>5, 'cols'=>30)); ?>
+		<!--<p class="hint">You may use <a target="_blank" href="http://daringfireball.net/projects/markdown/syntax">Markdown syntax</a>.</p> -->
+		<?php echo $form->error($model,'illness'); ?>
+	</div>
+
+
+
+
+	<div class="row buttons">
+		<?php echo CHtml::submitButton($model->isNewRecord ? '提交' : '保存'); ?>
+	</div>
+
+<?php $this->endWidget(); ?>
+
+</div><!-- form -->

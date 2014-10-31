@@ -1,0 +1,162 @@
+@charset "utf-8";
+/* CSS Document */
+
+* {margin: 0;padding: 0;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,p,strong,form,acronym,label,table,input,textarea,select,td,th,span,a,hr,code,pre{list-style-type:none;font-family:"微软雅黑","宋体",Tahoma, Geneva, sans-serif; font-size:14px;}
+img{border:0;margin-bottom: -5px;}
+ol,ul{list-style:none;}
+a,a:hover{cursor:pointer;outline:none;text-decoration:none;}
+
+
+/*登陆页*/
+
+.top{ margin:0 auto; height:108px; background:url(images/top_bg.gif) repeat-x; display:block; overflow:hidden;}
+.top_m{ margin:0 auto; height:108px; width:965px; display:block; overflow:hidden;}
+.logo{ float:left; width:169px; height:40px; padding-top:35px; display:block; overflow:hidden;}
+.title{ float:right; width:300px; height:50px; color:#00a7e0; padding-top:30px; font-size:30px; display:block; overflow:hidden; }
+.banner{ margin:0 auto; height:445px; background:url(images/ban_bg.gif) repeat-x; display:block; overflow:hidden;}
+.ban_m{ margin:0 auto; width:965px; height:445px; background:url(images/dl_bg.png) no-repeat; display:block; overflow:hidden;}
+.ban_le{ float:right; width:283px; height:197px; padding:162px 22px 0 0;  display:block; overflow:hidden;}
+.login_ta{ float:left; width:283px; height:197px;}
+.ban_le p{ float:left; width:283px; height:39px; display:block; overflow:hidden; margin-top:30px;}
+.inp{ width:260px; line-height:30px; height:30px; padding-left:10px; margin-left:5px; border:1px #FFFFFF solid; color:#909090; }
+.inp1{ width:260px;  line-height:30px; height:30px; margin-top:30px; margin-left:5px;  padding-left:10px; border:1px #FFFFFF solid; color:#909090; }
+.tdbg{ background:url(images/icon_1.jpg) center center no-repeat; color:#FFF; text-align:center; }
+.tdbg a{color:#FFF;font-size:18px; }
+.tdbg a:hover{ color:#004257}
+.foot{ margin:0 auto; width:965px; text-align:center; color:#929292; display:block; overflow:hidden; font-size:12px; line-height:20px; padding-top:25px;}
+
+
+/*创建登录页*/
+
+.box{ margin:0 auto; width:1000px; height:auto; display:block; overflow:hidden; }
+.top_dl{ float:left; width:1000px; height:74px; background:url(images/top_bg1.gif) no-repeat; display:block; overflow:hidden;}
+.logo_1{ float:left; width:169px; height:40px; padding-top:20px; padding-left:10px; display:block; overflow:hidden;}
+.title_1{ float:right; width:250px; height:50px; color:#00a7e0; padding-top:20px;  font-size:24px; display:block; overflow:hidden; }
+
+.nav{ float:left; width:1000px; height:44px; background:url(images/nav_bg.gif) repeat-x; display:block; overflow:hidden;}
+.nav_le{ float:left; width:213px; height:44px; background:url(images/nav_li.gif) right center no-repeat;  display:block; overflow:hidden;}
+.nav_le p{ float:left; background:url(images/nav_ic.gif) 15px center no-repeat; padding-left:40px; line-height:44px; color:#FFF; display:block; overflow:hidden;}
+.nav_li{ float:left; width:770px;  height:44px; }
+.nav_li ul{float:left; width:770px; height:44px; display:block; overflow:hidden;}
+.nav_li ul li{float:left;  padding:0 33px; line-height:44px;display:block; overflow:hidden;}
+.nav_li ul li a{ color:#FFF;  font-size:16px;  }
+.nav_li ul li a:hover{  text-decoration:underline;}
+
+.box_1{ float:left; width:1000px; background:#ddf7ff;}
+.box_le{ float:left; width:213px; height:auto; display:block; overflow:hidden }
+.box_le_top{ float:left; width:213px; height:51px; display:block; overflow:hidden}
+
+#levelmenu { float:left; cursor:pointer;
+	width:213px; 
+	
+}
+	
+#levelmenu h5 { cursor:pointer; font-weight:bold;
+	height:38px;
+	line-height:38px;
+	overflow:hidden;
+	background:url(images/list_1.gif) no-repeat; text-align:center;
+	color:#006889;
+	margin:0;
+
+	font-size:14px;
+	cursor:default;
+}
+#levelmenu div.unit ul.ul1 { width:213px; cursor:pointer;
+	display:none;
+	line-height:35px;
+	
+}
+#levelmenu div.current ul.ul1 { cursor:pointer;
+	display:block;
+}
+#levelmenu div.current h5 { font-size:14px; cursor:pointer;
+	background:url(images/list_2.gif)  ;
+	border-bottom:none; display:block; color:#006889; font-weight:bold;
+}
+
+.MenuBox2{  text-align:center; font-size:14px; width:213px; height:35px; overflow:hidden; cursor:pointer; }
+.MenuBox2 a{ color:#4b6b76;  line-height:35px; display:block; cursor:pointer; }
+.MenuBox2 a:hover{ background:#fcfbfb; text-decoration:none; cursor:pointer;}
+
+
+
+.box_ri{ float:right; width:787px; height:auto; background:#fcfbfb; display:block; overflow:hidden }
+
+.box_ri_top{ float:left; width:787px; height:51px; background:url(images/ri_t.gif) repeat-x; display:block; overflow:hidden}
+.box_ri_top p{ background:url(images/ri_ic.gif) 20px center no-repeat; padding-left:30px; line-height:51px; color:#7b7b7b; display:block; overflow:hidden;}
+.box_ri_con{ float:left; width:747px; padding:20px; display:block; overflow:hidden;}
+.box_ri_con h3{  width:747px; font-size:20px; color:#303030; margin-bottom:20px; line-height:20px; display:block; overflow:hidden; text-align:center; font-weight:normal;}
+.pica{ float:left; width:747px; display:block; overflow:hidden}
+.pica p{ float:left; width:558px; height:301px; display:block; overflow:hidden;}
+.pica ul{ float:left; width:165px; display:block; overflow:hidden; padding-left:10px;}
+.pica ul li{ float:left; width:145px; line-height:30px; display:block; overflow:hidden; font-size:12px; color:#5b5a5a;}
+.pica ul li.a1{ background:url(images/icon_a.gif) left 8px no-repeat; padding-left:20px;}
+.pica ul li.a2{ background:url(images/icon_a.gif) left -27px no-repeat;padding-left:20px; }
+.pica ul li.a3{ background:url(images/icon_a.gif) left -60px no-repeat;padding-left:20px; }
+
+.kuai{ float:left; width:148px; height:33px; background:url(images/kuai_1.gif) center center no-repeat; padding:19px; display:block; overflow:hidden; text-align:center; line-height:33px;}
+.kuai a{ color:#2aa5cc;  display:block}
+.kuai a:hover{ background:url(images/kuai_2.gif) center center no-repeat; color:#FFF;}
+
+.table6{ width:747px; color:#5b5a5a;}
+.table6 tr td{ line-height:50px; width:39px;}
+
+.table1{ width:747px; color:#5b5a5a;border:2px dotted #D2D2D2;}
+.table1 tr td{ line-height:50px;}
+.inp2{ border:1px solid #c3c3c3; width:280px; height:28px; line-height:28px;  color:#5b5a5a; padding-left:10px; }
+.inysd{ border:1px solid #c3c3c3; width:25px; height:28px; line-height:28px;  color:#5b5a5a; padding-left:10px; }
+.inys{ border:1px solid #c3c3c3; width:90px; height:28px; line-height:28px;  color:#5b5a5a; padding-left:10px; }
+.inp3{ border:1px solid #c3c3c3; width:37px; height:28px; line-height:28px;  color:#5b5a5a; padding-left:10px; }
+.inp4{ border:1px solid #c3c3c3; width:300px; height:28px; line-height:28px;  color:#5b5a5a; padding-left:10px; }
+
+.sel{ width:86px;  border:1px solid #c3c3c3; line-height:28px;  padding-left:10px; }
+.icon1{ float:left; margin-left:10px; width:282px; height:39px; line-height:39px; background:url(images/icon_ha.gif) center center no-repeat; display:block; overflow:hidden; text-align:center;}
+.icon1 a{ color:#FFF; font-size:18px; display:block;}
+.icon1 a:hover{color:#004257}
+
+.table3{ width:747px; color:#5b5a5a;}
+.table3 tr td{ line-height:50px;}
+
+
+/*创建登录页*/
+
+.table2{ width:747px; color:#5b5a5a; border-collapse:collapse;}
+.table2 tr td{ line-height:40px; border:1px solid #e0e0e0; }
+.table2 tr td a{text-decoration:underline; color:#1aa1cc;}
+.table2 tr td a:hover{ color:#005a77;}
+
+
+.yema{ width:680px; height:26px; margin-top:20px; padding-left:67px;   display:block; overflow:hidden;}
+.yema ul{ float:left; width:360px; color:#656565; display:block; overflow:hidden}
+.yema p{ float:left; line-height:26px;  font-size:14px; display:block; overflow:hidden; }
+.yema  span{ float:left; width:46px; background:url(images/ye_m3.gif) center center no-repeat; line-height:26px; font-weight:normal; font-size:14px; display:block; overflow:hidden}
+.inps{  width:62px; height:23px; border:1px solid #dadada;}
+
+
+.yema ul li{ float:left; width:29px; height:26px; background:url(images/ye_m1.gif) center center no-repeat; margin:0 3px; text-align:center; line-height:26px; display:block; overflow:hidden;}
+.yema ul li a{ color:#656565;  text-align:center; line-height:26px; display:block; overflow:hidden;}
+.yema ul li a:hover{ background:url(images/ye_m2.gif) center center no-repeat; color:#FFF;}
+
+.yema ul li.lia{ float:left; width:49px; height:26px; background:url(images/ye_m.gif) center center no-repeat; text-align:center; line-height:26px; display:block; overflow:hidden;}
+.yema ul li.lia a{ color:#656565;  text-align:center; line-height:26px; display:block; overflow:hidden;}
+.yema ul li.lia a:hover{ background:url(images/ye_h.gif) center center no-repeat; color:#FFF;}
+
+.yema ul li.lib{ float:left; width:49px; height:26px; background:url(images/ye_m.gif) center center no-repeat; text-align:center; line-height:26px; display:block; overflow:hidden;}
+.yema ul li.lib a{ color:#656565;  text-align:center; line-height:26px; display:block; overflow:hidden;}
+.yema ul li.lib a:hover{ background:url(images/ye_h.gif) center center no-repeat; color:#FFF;}
+
+
+.pa{ float:left; line-height:40px; font-size:14px; font-weight:bold; background:url(images/icon_qq.gif) 10px center no-repeat; color:#5f8892; padding-left:20px; display:block; overflow:hidden;}
+.spana{ float:right; line-height:40px; font-size:12px; color:#838383; padding-right:10px;}
+
+.icon_h{ width:747px; height:39px; background:url(images/icon_ha.gif) center center no-repeat; text-align:center; line-height:39px; display:block; overflow:hidden; margin-top:20px;}
+.icon_h p{ margin:0 auto; width:280px; height:39px; display:block; overflow:hidden;}
+.icon_h p a{ color:#FFF; display:block; font-size:18px;}
+.icon_h p a:hover{ color:#004257}
+
+
+
+
+.foot_1{ margin:0 auto; width:1000px; height:52px; line-height:20px; text-align:center; font-size:12px; color:#929292; background:url(images/foot.gif) repeat-x; display:block; overflow:hidden; padding-top:10px;}

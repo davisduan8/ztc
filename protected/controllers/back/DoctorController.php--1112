@@ -1,0 +1,314 @@
+<?php
+/**
+ *@author lsc Date 2013/10/17
+ */
+class DoctorController extends Controller
+{
+	public $layout='//layouts/columnd';
+    public $hzfj;
+	
+	public function filters()
+	{
+		return array(
+			'accessControl', // perform access control for CRUD operations
+//			'postOnly + delete', // we only allow deletion via POST request
+		);
+	}
+	
+	public function accessRules()
+	{
+		return array(
+			
+			array('allow', // allow admin user to perform 'admin' and 'delete' actions
+				//'actions'=>array('index'),
+				'users'=>array('@'),
+			),
+			array('deny',  // deny all users
+				'users'=>array('*'),
+			),
+		);
+	}
+	
+    //医生列表页
+	public function actionIndex()
+	{
+          
+		$this->render('index');
+	}
+          public function rules()
+        {
+            return array(
+                array('hzfj', 'file', 'types'=>'jpg, gif, png','message'=>'文件不合法'),
+            );
+        }
+        //新增会诊
+        public function actionAddhz(){
+
+           $model = new Consultation;
+         //  $model->status = $_POST['Consultation']['status'];
+           if(isset($_POST['Consultation']))
+	   {
+               $model->attributes = $_POST['Consultation'] ;
+               $model->status = $_POST['Consultation']['status'];
+               $model->pre_time = $_POST['Consultation']['pre_time'];
+               $model->do_doctorid = Yii::app()->user->id;
+               $model->expertid = Yii::app()->user->id;
+             //  $model->hzfj=CUploadedFile::getInstance($model,'hzfj');
+               if($model->save()){
+                  //  $model->hzfj->saveAs(Yii::app()->basePath.'/../upload/'.$model->hzfj);
+                   //信息添加成功后实现页面重定向（列表页面）
+                   Yii::app()->user->setFlash('success','申请会诊成功！');
+				 //  $this->redirect_message('申请会诊成功!','3','./index.php?r=doctor/waithz');
+                  
+               } 
+     
+               $this -> redirect('./index.php?r=doctor/upfj'); //添加成功之后跳转到首页
+	  }
+
+           $this->render('addhz',array('info_model'=> $model));
+       
+            
+        }
+        
+         //跳转到第二步上传附件
+        function actionUpfj(){
+              $model = new ZtcAttach;
+              if(isset($_POST['ZtcAttach']))
+	      {   
+                  $model->attributes = $_POST['ZtcAttach'];
+                  if(!empty($_POST["uploadpath"])){
+                         foreach($_POST["uploadpath"] as $vo){
+                               // $model->consulationid = ;
+                                $model->file_path = "/uploads/".$vo;
+                                $model->ext_name = pathinfo($vo,PATHINFO_EXTENSION);
+                               
+                        }
+                   
+                        if(!empty($_POST["imgdes"])){
+                                foreach($_POST["imgdes"] as $vos){
+                                      $model->file_info = $vos;
+                                     
+                                }
+                        }
+                         $model->save();
+                  }
+   
+//                $model->hzfj=CUploadedFile::getInstance($model,'hzfj');
+//                if($model->save()){
+//                    $model->hzfj->saveAs(Yii::app()->basePath.'/../upload/'.$model->hzfj);
+//                }
+                //   $this -> redirect('./index.php?r=doctor/selzj'); //添加成功之后跳转到首页
+              }
+  
+            $this->render('upfj',array('info'=> $model));
+        }
+        //跳到第三步选择专家
+        function actionSelzj(){
+                 $ztcexpert  = new ZtcExpert;
+		
+		$this->render('selzj',array(
+				'ztcexpert'=>$ztcexpert,
+				//'chkpmodel'=>$chkpmodel,
+			));
+             
+        }
+        //选择了的专家要更新到会诊表当中
+        function actionZjgx(){
+         $MyUrl = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+         echo $MyUrl."<br/>";
+         $str = explode('&selectdel=', $MyUrl);
+         print_r($str[1]);
+         $eid = Yii::app()->user->id;
+  
+     //   $sql = "UPDATE Consultation SET expertid = '.$str[1].' WHERE id = '.$eid.'";
+        
+        $up = Consultation::model()->updateByPk(158,array('expertid'=>$str[1]));
+    
+            if($up > 0){
+                echo "OK";
+            } else {
+                echo "error";
+            }
+//             if (Yii::app()->request->isPostRequest){
+//                $ztcexpert= new ZtcExpert;
+//                $cc =  $_POST['selectdel'];
+//          print_r($cc);die();
+////                Consultation::model()->updateByPk($pk, $attributes);
+////                $msg = $model ->updateByPk(Yii::app()->user->id,array('password'=>$nps ,'username'=>$uname));
+//                
+//             }
+        }
+        
+        //待处理会诊
+        public function actionWaithz(){
+                $model = new Consultation('search');
+         	if(isset($_GET['Consultation']))
+                $model->attributes=$_GET['Consultation'];
+		$this->render('waithz',array('model'=>$model));
+                  
+        } 
+        //待处理会诊的显示详细信息
+        public function actionView($id){
+          $model=$this->loadModel($id);
+	  $this->render('view',array('model'=>$model));
+        }
+        //待处理会诊修改信息
+        public function actionUpdate($id)
+	{
+		$model=$this->loadModel($id);
+		if(isset($_POST['Consultation']))
+		{
+			$model->attributes=$_POST['Consultation'];
+			if($model->save())
+			$this->redirect(array('view','id'=>$model->id));
+		}
+
+		$this->render('update',array(
+			'model'=>$model,
+		));
+	}
+        //待处理会诊删除信息、
+        public function actionDelete($id)
+	{
+		if(Yii::app()->request->isPostRequest)
+		{
+                    // we only allow deletion via POST request
+                    $this->loadModel($id)->delete();
+                    // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+                    if(!isset($_GET['ajax']))
+                            $this->redirect(array('index'));
+		}
+		else
+		throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+	}
+        //已完成会诊信息列表
+        public function actionEndhz(){
+                $model = new Consultation('search');
+         	if(isset($_GET['Consultation']))
+                $model->attributes=$_GET['Consultation'];
+		$this->render('endhz',array(
+			'model'=>$model,
+		));
+        }
+        //修改资料 测试文件上传
+        public function actionXgzl(){
+            //$model = new Consultation;
+            $index  = Yii::app()->request->getParam("selectedIndex");
+            $pre_id = Yii::app()->request->getParam("upload_save_to_db_id");  
+           // $pre_id = $this->request->getParam("upload_save_to_db_id");  
+            $inputFileName = "hzfj".$index; 
+            $attach = CUploadedFile::getInstanceByName($inputFileName);  
+     
+            $retValue = "";  
+            if($attach == null){  
+                $retValue = "提示：不能上传空文件。";  
+            }else if($attach->size > 2000000){  
+                $retValue = "提示：文件大小不能超过2M。";  
+            }else {  
+                $retValue = '恭喜，上传成功！';  
+                if($pre_id == 0){  
+                    $f = file_get_contents($attach->tempName);  
+                    $a = new Attachment();  
+                   // var_dump($a);die();
+                    $a->ref_type = "failParts";  
+                    $a->data = $f;  
+                    $a->file_path = $attach->name;  
+                    $a->save();  
+                    $cur_id = $a->id;  
+                }else{  
+                    $trans = Yii::app()->db->beginTransaction();  
+                    try{  
+                        $f = file_get_contents($attach->tempName);  
+                        $a = new Attachment();  
+                        $a->ref_type = "failParts";  
+                        $a->data = $f;  
+                        $a->file_path = $attach->name;  
+                        $a->save();  
+                        $cur_id = $a->id;  
+
+                        $pre = Attachment::model()->findByPk($pre_id);  
+                        $pre->delete();  
+                        $trans->commit();  
+                    }catch(Exception $e){  
+                        $retValue = $e->getMessage();  
+                        $cur_id = 0;  
+                        $trans->rollback();  
+                    }  
+                }  
+                echo "<script type='text/javascript'>window.top.window.successUpload('{$retValue}',$cur_id,$index)</script>";exit();  
+            }  
+            echo "<script type='text/javascript'>window.top.window.stopUpload('{$retValue}',$index)</script>";  
+            $this->render(xgzl);
+        }  
+        
+
+		 //修改密码
+        public function actionXgps(){
+                $model = new Users;
+                
+             if($_POST) {
+			    $uname = trim($_POST['username']);
+                $pwd=md5(trim($_POST['password']));
+                $nps=md5(trim($_POST['nps']));
+                $rps=md5(trim($_POST['rps']));
+				
+			
+              //  $info = $model -> findByPk(Yii::app()->user->id);
+                $conn = Yii::app()->db;
+                $oldps = "select * from ztc_user where username='$uname' and password = '$pwd' ";
+                $info = $conn->createCommand($oldps)->queryScalar();
+
+                if($info > 0){
+                          if($nps==$rps) {
+                                $msg = $model ->updateByPk(Yii::app()->user->id,array('password'=>$nps ,'username'=>$uname));
+                               if(!empty($msg)){
+                                   echo "<script>alert('密码修改成功！')</script>";
+                               }
+                            }else {
+                                   echo "<script>alert('密码不一致！')</script>";
+                            }
+                 } else {
+                               echo "<script>alert('用户名或者原密码有误！')</script>";
+                 }
+  
+                }  
+			$this->render('xgps',array(
+				'model'=>$model,
+				//'chkpmodel'=>$chkpmodel,
+			));
+         
+         
+        }
+
+
+
+       /**
+	 * Returns the data model based on the primary key given in the GET variable.
+	 * If the data model is not found, an HTTP exception will be raised.
+	 */
+	public function loadModel($id)
+	{
+            	$model=Consultation::model()->findByPk($id);
+		if($model===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		return $model;
+            
+	}
+
+        
+	/**
+	 * This is the action to handle external exceptions.
+	 */
+	public function actionError()
+	{
+		if($error=Yii::app()->errorHandler->error)
+		{
+			if(Yii::app()->request->isAjaxRequest)
+				echo $error['message'];
+			else
+				$this->render('error', $error);
+		}
+	}
+
+	
+}
